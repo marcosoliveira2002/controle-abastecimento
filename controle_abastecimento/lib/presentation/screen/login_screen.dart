@@ -66,6 +66,30 @@ class LoginScreen extends StatelessWidget {
               },
               child: Text('Criar uma conta'),
             ),
+            TextButton(
+              onPressed: () async {
+                final email = emailController.text.trim();
+
+                if (email.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Digite seu e-mail para recuperar a senha!')),
+                  );
+                  return;
+                }
+
+                try {
+                  await AuthService().enviarRecuperacaoSenha(email);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('E-mail de recuperação enviado!')),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Erro ao enviar e-mail de recuperação: $e')),
+                  );
+                }
+              },
+              child: Text('Esqueceu a senha?'),
+            ),
           ],
         ),
       ),

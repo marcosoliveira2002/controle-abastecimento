@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Bem-vindo ao Controle de Abastecimento!',
+          '',
           style: TextStyle(fontSize: 24),
         ),
       ),
